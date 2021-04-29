@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "client-management-system-57e55": {
+      "hosting": {
+        "app": [
+          "client-management-system-57e55"
+        ]
+      }
+    }
+  }
+}
