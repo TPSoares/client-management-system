@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-client-new',
@@ -7,8 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ClientNewComponent implements OnInit {
 
-  constructor() { }
+  public isEditing: string;
 
-  ngOnInit() {}
+  constructor(private activatedRoute: ActivatedRoute) { }
+
+  ngOnInit() {
+    this.isEditing = this.activatedRoute.snapshot.params['id'];
+    console.log(this.isEditing)
+  }
 
 }

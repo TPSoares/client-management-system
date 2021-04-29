@@ -1,9 +1,13 @@
 <ion-card>
-  <ion-item>
+  <ion-item color="">
     <ion-icon name="pin" slot="start"></ion-icon>
     <ion-label>{{ client.name }}</ion-label>
-    <ion-button fill="outline" slot="end" [routerLink]="[client.id]">Editar</ion-button>
-    <ion-button fill="outline" slot="end" (click)="deleteClient()">Deletar</ion-button>
+    <ion-button slot="end" color="warning" [routerLink]="[client.id]">
+      <ion-icon name="pencil-outline" shape="round" color="light"></ion-icon>
+    </ion-button>
+    <ion-button slot="end" color="danger" (click)="presentAlert()">
+      <ion-icon name="trash-outline" shape="round" color="light"></ion-icon>
+    </ion-button>
   </ion-item>
 
   <ion-card-content>

@@ -6,7 +6,7 @@ import { ClientDto } from '../dto/ClientDto';
   selector: 'app-client',
   templateUrl: './client-list.component.html',
   styleUrls: ['./client-list.component.scss'],
-  providers: [ ClientService ]
+  
 })
 export class ClientListComponent implements OnInit {
 
@@ -15,7 +15,11 @@ export class ClientListComponent implements OnInit {
   constructor(private service: ClientService) { }
 
   ngOnInit() {
+    
     this.service.getClientList().subscribe(result => {
+
+      this.clientList = [];
+
       result.map(res => {
         this.clientList.push({
           id: res.payload.doc.id,
@@ -27,5 +31,4 @@ export class ClientListComponent implements OnInit {
       })
     })
   }
-
 }
