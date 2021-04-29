@@ -1,0 +1,7 @@
+{
+  "name": "client-management-system",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
