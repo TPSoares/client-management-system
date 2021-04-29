@@ -16,6 +16,10 @@ const routes: Routes = [
         component: ClientNewComponent
       },
       {
+        path: 'clients/:id',
+        component: ClientNewComponent
+      },
+      {
         path: '**',
         redirectTo: '/clients',
         pathMatch: 'full'

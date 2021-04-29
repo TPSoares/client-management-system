@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore, DocumentChangeAction } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
+import { ClientDto } from './dto/ClientDto';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,11 @@ export class ClientService {
 
   }
 
-  public getClientList(): Observable<any> {
-    return this.fireStore.collection(this._collection).valueChanges();
+  public getClientList(): Observable<DocumentChangeAction<ClientDto>[]> {
+    return this.fireStore.collection<ClientDto>(this._collection).snapshotChanges();
+  }
+
+  public deleteClient(id: string) {
+    this.fireStore.doc(`${this._collection}/${id}`).delete();
   }
 }

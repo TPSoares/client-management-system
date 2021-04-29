@@ -1,0 +1,13 @@
+<ion-card>
+  <ion-item>
+    <ion-icon name="pin" slot="start"></ion-icon>
+    <ion-label>{{ client.name }}</ion-label>
+    <ion-button fill="outline" slot="end" [routerLink]="[client.id]">Editar</ion-button>
+    <ion-button fill="outline" slot="end" (click)="deleteClient()">Deletar</ion-button>
+  </ion-item>
+
+  <ion-card-content>
+    This is content, without any paragraph or header tags,
+    within an ion-card-content element.
+  </ion-card-content>
+</ion-card>
