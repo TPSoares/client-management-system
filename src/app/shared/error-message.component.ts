@@ -6,7 +6,8 @@ import { Component, Input } from '@angular/core';
   template: `
     <div *ngIf="hasError()" class="ui-message ui-messages-error">
       <p *ngIf="form.hasError('required')">O campo é obrigatório</p>
-      <p *ngIf="form.hasError('email')">Por favor entre com um email válido</p>
+      <p *ngIf="form.hasError('pattern')">Informe um email válido</p>
+      <p *ngIf="form.hasError('minlength')">Informe um telefone válido</p>
     </div>
   `,
   styles: [`
@@ -26,6 +27,8 @@ export class MessageComponent {
   @Input() label: string;
 
   hasError() {
-    return this.form.errors !== null && this.form.enabled && (this.form.submitted || this.form.dirty) || this.form.touched;
+    if (this.form !== undefined) {
+      return this.form.errors !== null && (this.form.submitted || this.form.touched);
+    }
   }
 }

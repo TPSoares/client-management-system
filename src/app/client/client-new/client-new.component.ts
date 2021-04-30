@@ -13,40 +13,44 @@ import { ToastController } from '@ionic/angular';
 })
 export class ClientNewComponent implements OnInit {
 
+  public readonly emailPattern: string = "[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*";
+
   public isEditing: string;
   public client: ClientDto = new ClientDto();
-
-  @ViewChild('email', { read: ElementRef }) email: ElementRef;
-
-
-  public clientForm = new FormGroup({
-    name: new FormControl('', Validators.required),
-    email: new FormControl('', Validators.compose([Validators.required, Validators.email])),
-    phone: new FormControl('', Validators.required),
-    birth_date: new FormControl('', Validators.required),
-  });
 
   constructor(private service: ClientService, private activatedRoute: ActivatedRoute, private router: Router, public toastController: ToastController) { }
 
   ngOnInit() {
     this.isEditing = this.activatedRoute.snapshot.params['id'];
-    console.log(this.isEditing)
+
+    if (this.isEditing) {
+      this.service.getClient(this.isEditing).then(client => {
+        this.client = client;
+      })
+    }
   }
 
   public submitForm() {
-    console.log(this.clientForm.value)
-    this.service.saveClient(this.clientForm.value).then(res => {
-      this.router.navigateByUrl('/clients');
-      this.presentToast();
-    });
+    if(this.isEditing) {
+      this.service.updateClient(this.isEditing, this.client).then(() => {
+        this.router.navigateByUrl('/clients');
+        this.showToast();
+      });
+    } else {
+      this.service.saveClient(this.client).then(() => {
+        this.router.navigateByUrl('/clients');
+        this.showToast();
+      });
+    }
   }
 
-  async presentToast() {
+  async showToast() {
+    let message = this.isEditing ? 'Cliente atualizado com sucesso.' : 'Cliente criado com sucesso.';
     const toast = await this.toastController.create({
-      message: 'Cliente criado com sucesso.',
+      message: message,
       duration: 3000,
       color: 'success',
-      position: 'top'
+      position: 'top',
     });
     toast.present();
   }

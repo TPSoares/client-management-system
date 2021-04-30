@@ -19,7 +19,7 @@ export class ClientListComponent implements OnInit {
     this.service.getClientList().subscribe(result => {
 
       this.clientList = [];
-
+      
       result.map(res => {
         this.clientList.push({
           id: res.payload.doc.id,

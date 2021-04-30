@@ -19,13 +19,13 @@ export class ClientContainerComponent implements OnInit {
     public toastController: ToastController) { }
 
   ngOnInit() {
-    console.log(this.client)
+  
   }
 
   public deleteClient() {
-    console.log(this.client.id)
-    this.service.deleteClient(this.client.id);
-    this.presentToast();
+    this.service.deleteClient(this.client.id).then(() => {
+      this.presentToast();
+    });
   }
 
   public async presentAlert() {
