@@ -8,18 +8,18 @@
 <ion-content>
   <ion-grid>
     <ion-row>
-      <ion-col size="6" 
+      <ion-col size="12" 
         *ngFor="let client of clientList; index as position">
           <app-client-container [client]="client"></app-client-container>
       </ion-col>
     </ion-row>
   </ion-grid>
 </ion-content>
-<ion-footer>
+<ion-footer class="ion-no-border">
   <ion-toolbar>
-    <ion-button color="primary" fill="outline" slot="end" [routerLink]="['/clients/new']">
-      <ion-icon slot="start" name="add-outline"></ion-icon>
-      Adicionar
+    <ion-button color="primary" slot="end" [routerLink]="['/clients/new']" style="margin: 0px 20px 10px 0px;">
+      <ion-icon name="add-outline"></ion-icon>
+      Cliente
     </ion-button >
   </ion-toolbar>
 </ion-footer>

@@ -18,6 +18,15 @@ export class ClientService {
     return this.fireStore.collection<ClientDto>(this._collection).snapshotChanges();
   }
 
+  public saveClient(client): Promise<any> {
+    return this.fireStore.collection<any>(this._collection).add({
+      name: client.name,
+      email: client.email,
+      phone: client.phone,
+      birth_date: client.birth_date
+    })
+  }
+
   public deleteClient(id: string) {
     this.fireStore.doc(`${this._collection}/${id}`).delete();
   }
