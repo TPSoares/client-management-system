@@ -21,7 +21,7 @@ npm install
 ionic serve
 ```
 
-### If you don't have the requirements on your local machine, you can use the links bellow to install each one of them:
+### If you don't have the requirements on your local machine, you can use the links bellow to install each one of them and finally follow the steps back on the list:
 
 #### [Angular CLI](https://angular.io/cli)
 #### [Ionic](https://ionicframework.com/docs/angular/your-first-app)
