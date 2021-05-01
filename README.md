@@ -2,7 +2,7 @@
 
 ## An Ionic made web app to demonstrate a crud using firebase hosting
 
-### To access the system, click [here](https://client-management-system-57e55.web.app/clients){:target="_blank"}
+### To access the system, click [here](https://client-management-system-57e55.web.app/clients)
 
 ### To install the system locally, follow the steps bellow:
 
@@ -23,6 +23,6 @@ ionic serve
 
 ### If you don't have the requirements on your local machine, you can use the links bellow to install each one of them:
 
-#### [Angular CLI](https://angular.io/cli){:target="_blank"}
-#### [Ionic](https://ionicframework.com/docs/angular/your-first-app){:target="_blank"}
-#### [Node.js](https://nodejs.org/en/download/){:target="_blank"}
+#### [Angular CLI](https://angular.io/cli)
+#### [Ionic](https://ionicframework.com/docs/angular/your-first-app)
+#### [Node.js](https://nodejs.org/en/download/)
