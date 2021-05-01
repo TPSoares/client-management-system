@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore, DocumentChangeAction } from '@angular/fire/firestore';
+import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
-import { ClientDto } from './dto/ClientDto';
-import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
