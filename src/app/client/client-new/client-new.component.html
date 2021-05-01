@@ -33,9 +33,9 @@
           <app-error-message [form]="clientInfo.controls['phone']" ></app-error-message>
           <ion-item>
             <ion-label position="floating">Data de Nascimento</ion-label>
-            <ion-input id="birthDateInput" name="birthDateInput" formControlName="birth_date" 
+            <ion-datetime id="birthDateInput" name="birthDateInput" formControlName="birth_date" 
               type="date" placeholder="">
-          </ion-input>
+          </ion-datetime>
           </ion-item>
           <app-error-message [form]="clientInfo.controls['birth_date']" ></app-error-message>
           <ion-row>
