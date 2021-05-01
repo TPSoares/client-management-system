@@ -17,7 +17,7 @@ git clone https://github.com/TPSoares/client-management-system.git <folder-name>
 npm install
 ```
 
-3. Put your firebase credentials on the environment.ts file and create a collection called "clients"
+3. Create a firebase project [here](https://console.firebase.google.com/), put your firebase credentials on the environment.ts file and create a collection called "clients" under firestore
 
 4. Serve the project with
 ```shell
