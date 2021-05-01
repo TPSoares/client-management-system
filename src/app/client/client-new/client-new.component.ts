@@ -4,6 +4,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ClientDto } from '../dto/ClientDto';
 import { ClientService } from '../client.service';
 import { ToastController } from '@ionic/angular';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-client-new',
@@ -18,7 +19,20 @@ export class ClientNewComponent implements OnInit {
   public isEditing: string;
   public client: ClientDto = new ClientDto();
 
-  constructor(private service: ClientService, private activatedRoute: ActivatedRoute, private router: Router, public toastController: ToastController) { }
+  public clientInfo = new FormGroup({
+    name: new FormControl('', Validators.required),
+    email: new FormControl('', [Validators.required, Validators.email]),
+    phone: new FormControl('', [Validators.required, Validators.minLength(15)]),
+    birth_date: new FormControl('', Validators.required),
+  })
+
+  constructor(
+    private service: ClientService, 
+    private activatedRoute: ActivatedRoute, 
+    private router: Router, 
+    public toastController: ToastController,
+    public alertController: AlertController,
+    ) { }
 
   ngOnInit() {
     this.isEditing = this.activatedRoute.snapshot.params['id'];
@@ -26,18 +40,25 @@ export class ClientNewComponent implements OnInit {
     if (this.isEditing) {
       this.service.getClient(this.isEditing).then(client => {
         this.client = client;
+
+        this.clientInfo.setValue({
+          name: this.client.name,
+          email: this.client.email,
+          phone: this.client.phone,
+          birth_date: this.client.birth_date
+        })
       })
     }
   }
 
   public submitForm() {
     if(this.isEditing) {
-      this.service.updateClient(this.isEditing, this.client).then(() => {
+      this.service.updateClient(this.isEditing, this.clientInfo.value).then(() => {
         this.router.navigateByUrl('/clients');
         this.showToast();
       });
     } else {
-      this.service.saveClient(this.client).then(() => {
+      this.service.saveClient(this.clientInfo.value).then(() => {
         this.router.navigateByUrl('/clients');
         this.showToast();
       });
@@ -53,6 +74,32 @@ export class ClientNewComponent implements OnInit {
       position: 'top',
     });
     toast.present();
+  }
+
+  async cancelWarning() {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Confirmar',
+      message: 'Deseja cancelar a ação?',
+      buttons: [
+        {
+          text: 'Não',
+          role: 'cancelar',
+          
+        }, {
+          text: 'Sim',
+          role: 'confirmar'
+        }
+      ]
+    });
+
+    await alert.present();
+
+    const { role } = await alert.onDidDismiss();
+    
+    if (role === 'confirmar') {
+      this.router.navigateByUrl('/clients');
+    }
   }
 
 }

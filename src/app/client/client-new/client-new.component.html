@@ -8,40 +8,44 @@
 <ion-content>
   <ion-grid>
     <ion-row>
-      <ion-col size="12" size-md="6" offset="3">
-        <form #f="ngForm" (ngSubmit)="submitForm()">
+      <ion-col size="12" size-md="6" offset-md="3">
+        <form [formGroup]="clientInfo" (ngSubmit)="submitForm()">
           <ion-item>
             <ion-label position="floating">Nome Completo</ion-label>
             <ion-input 
-              id="nameInput" name="nameInput" [(ngModel)]="client.name" 
-              #nameInput="ngModel" type="text" required>
+              id="nameInput" name="nameInput" formControlName="name" type="text">
             </ion-input>
           </ion-item>
-          <app-error-message [form]="f.controls['nameInput']"></app-error-message>
+          <app-error-message [form]="clientInfo.controls['name']"></app-error-message>
           <ion-item>
             <ion-label position="floating">Email</ion-label>
             <ion-input 
-              id="emailInput" name="emailInput" [(ngModel)]="client.email" 
-              #emailInput="ngModel" type="email" pattern="{{emailPattern}}"
-              required>
+              id="emailInput" name="emailInput" formControlName="email" type="email">
             </ion-input>
           </ion-item>
-          <app-error-message [form]="f.controls['emailInput']" ></app-error-message>
+          <app-error-message [form]="clientInfo.controls['email']" ></app-error-message>
           <ion-item>
             <ion-label position="floating">Telefone</ion-label>
-            <ion-input id="phoneInput" name="phoneInput" [(ngModel)]="client.phone" 
-              #phoneInput="ngModel" type="text" [brmasker]="{phone: true}" required minlength="15">
+            <ion-input id="phoneInput" name="phoneInput" formControlName="phone" 
+              type="text" [brmasker]="{phone: true}">
           </ion-input>
           </ion-item>
-          <app-error-message [form]="f.controls['phoneInput']" ></app-error-message>
+          <app-error-message [form]="clientInfo.controls['phone']" ></app-error-message>
           <ion-item>
             <ion-label position="floating">Data de Nascimento</ion-label>
-            <ion-input id="birthDateInput" name="birthDateInput" [(ngModel)]="client.birth_date" 
-              #birthDateInput="ngModel" type="date" placeholder="" required>
+            <ion-input id="birthDateInput" name="birthDateInput" formControlName="birth_date" 
+              type="date" placeholder="">
           </ion-input>
           </ion-item>
-          <app-error-message [form]="f.controls['birthDateInput']" ></app-error-message>
-          <ion-button type="submit" [disabled]="!f.valid">Cadastrar</ion-button>
+          <app-error-message [form]="clientInfo.controls['birth_date']" ></app-error-message>
+          <ion-row>
+            <ion-col size="6">
+              <ion-button expand="full" color="medium" (click)="cancelWarning()">Cancelar</ion-button>
+            </ion-col>
+            <ion-col size="6">
+              <ion-button type="submit" expand="full" [disabled]="!clientInfo.valid">Salvar</ion-button>
+            </ion-col>
+          </ion-row>
         </form>
       </ion-col>
     </ion-row>

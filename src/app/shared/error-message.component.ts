@@ -6,7 +6,7 @@ import { Component, Input } from '@angular/core';
   template: `
     <div *ngIf="hasError()" class="ui-message ui-messages-error">
       <p *ngIf="form.hasError('required')">O campo é obrigatório</p>
-      <p *ngIf="form.hasError('pattern')">Informe um email válido</p>
+      <p *ngIf="form.hasError('email')">Informe um email válido</p>
       <p *ngIf="form.hasError('minlength')">Informe um telefone válido</p>
     </div>
   `,
