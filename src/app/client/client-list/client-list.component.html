@@ -15,19 +15,19 @@
           </ion-card-header>
         
           <ion-card-content>
-            <ion-row size="8">
-              <ion-col size="8">
-                <div size="8">
+            <ion-row size="12">
+              <ion-col size="12" size-sm="8">
+                <div size="12" size-sm="8">
                   <ion-label><strong>Email:</strong> {{ client.email }}</ion-label>
                 </div>  
-                <div size="8">  
+                <div size="12" size-sm="8">  
                   <ion-label><strong>Contato:</strong>{{ client.phone }}</ion-label>
                 </div>
-                <div size="8">
+                <div size="12" size-sm="8">
                   <ion-label><strong>Nascimento:</strong>{{ client.birth_date | date:'dd/MM/yyyy' }}</ion-label>
                 </div>
               </ion-col>
-              <ion-col size="4">
+              <ion-col size="12" size-sm="4">
                 <div class="ion-text-center">
                   <ion-button slot="end" [routerLink]="[client.id]" color="secondary">
                     <ion-icon name="search-sharp" ></ion-icon>
